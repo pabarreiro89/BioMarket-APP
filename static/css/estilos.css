@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Mon;
+    background-color: #1d1a39;
+    color: white;
+    background-image: url("./static/imagenes/background");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #69b271;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.navbar-index {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0 1em;
+}
+
+.logo-nav {
+    height: 80%;
+    overflow: hidden;
+    margin-left: 1em;
+}
+
+.contenedor-centrado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.logo-centrado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 120px 0 5px 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+    color: #ffffff;
+}
+
+table {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #69b271;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+    border-collapse: collapse;
+}
+
+/* Estilo para el encabezado de la tabla */
+thead {
+    background-color: #ffffff;
+}
+
+/* Estilo para las celdas del encabezado */
+th {
+    color: #000000;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+}
+
+/* Estilo para las filas de la tabla */
+tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+/* Estilo para las celdas de datos y enlaces */
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+td a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #000000;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    padding: 10px;
+    background-color: #69b271;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #69b271;
+}
+
+button {
+    padding: 8px;
+    margin: 4px;
+    background-color: #227449;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #39a36c;
+}
+
+a {
+    padding: 8px;
+    margin: 4px;
+    background-color: #349b66;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 85%;
+    font-weight: 800;
+}
+
+a:hover {
+    background-color: #ffffff;
+    color: #69b271;
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Productos 🥕​</title>
+    <link rel="stylesheet" href="./static/css/estilos.css">
+    <style>
+
+        #productos-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #productos-table th, #productos-table td {
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        #productos-table th {
+            background-color: #f2f2f2;
+            color: black;
+        }
+
+        #productos-table td:last-child {
+            text-align: center;
+        }
+
+        body {
+            background-image: url('./static/imagenes/background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="logo-centrado">
+        <img src="./static/imagenes/imagen_eliminar_producto.jpg" alt="Img_Encabezado_ELIMINAR">
+    </div>
+    <h1>Eliminar del Carrito</h1><br>
+
+    <table id="productos-table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table><br>
+
+    <div class="contenedor-centrado">
+        <a href="index.html">Menu principal</a>
+    </div>
+
+    <script>
+        const URL = "https://pabarreiro.pythonanywhere.com/"
+
+
+        function obtenerProductos() {
+            fetch(URL + 'productos')
+                .then(response => {
+
+                    if (response.ok) { return response.json(); }
+                })
+
+                .then(data => {
+                    const productosTable = document.getElementById('productos-table').getElementsByTagName('tbody')[0];
+                    productosTable.innerHTML = ''; 
+                    data.forEach(producto => {
+                        const row = productosTable.insertRow();
+                        row.innerHTML = `
+                            <td>${producto.codigo}</td>
+                            <td>${producto.descripcion}</td>
+                            <td>${producto.cantidad}</td>
+                            <td align="right">${producto.precio}</td>
+                            <td>${producto.codigo !== 'Totales' ? `<button onclick="eliminarProducto('${producto.codigo}')">Eliminar</button>` : ''}</td>
+                        `;
+                    });
+                })
+
+                .catch(error => {
+                    console.log('Error:', error);
+                    alert('Error al obtener los productos.');
+                });
+        }
+
+        // Se utiliza para eliminar un producto.
+        function eliminarProducto(codigo) {
+
+            if (codigo === 'Totales') {
+                return;
+            }
+
+            if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+                fetch(URL + `productos/${codigo}`, { method: 'DELETE' })
+                    .then(response => {
+                        if (response.ok) {
+
+                            obtenerProductos();
+                            alert('Producto eliminado correctamente.');
+                        }
+                    })
+
+                    .catch(error => {
+                        alert(error.message);
+                    });
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', obtenerProductos);
+    </script>
+</body>
+
+</html>

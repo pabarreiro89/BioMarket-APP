@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Productos 🫐​</title>
+    <link rel="stylesheet" href="./static/css/estilos.css">
+    <style>
+        body {
+            background-image: url('./static/imagenes/background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .logo-centrado {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .contenedor-centrado {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="logo-centrado">
+        <img src="./static/imagenes/imagen_listado.jpg" alt="Img_Encabezado_LISTADO">
+    </div>
+    <h1>Tu Carrito</h1><br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>                
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody id="tablaProductos"> </tbody>
+    </table><br>
+
+    <div class="contenedor-centrado">
+        <a href="index.html">Menu principal</a>
+    </div>
+
+    <script>
+        const URL = "https://pabarreiro.pythonanywhere.com/";
+
+        fetch(URL + 'productos')
+            .then(function (response) {
+                if (response.ok) {
+
+                    return response.json(); 
+                } else {
+
+                    throw new Error('Error al obtener los productos.');
+                }
+            })
+
+            .then(function (data) {
+                let tablaProductos = document.getElementById('tablaProductos');
+                data.forEach(function(producto) {
+                    let fila = document.createElement('tr'); //Crea una nueva fila de tabla (<tr>) para cada producto.
+                    fila.innerHTML = `
+                        <td>${producto.codigo}</td>
+                        <td>${producto.descripcion}</td>
+                        <td>${producto.cantidad}</td>
+                        <td>${producto.precio}</td>
+                    `;
+
+                    tablaProductos.appendChild(fila);
+                });
+            })
+
+            .catch(function (error) {
+                alert('Error al obtener los productos.');
+            });
+    </script>
+</body>
+
+</html>
